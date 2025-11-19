@@ -1,0 +1,262 @@
+[
+  {
+    "id": 1,
+    "email": "alice.johnson@example.com",
+    "firstName": "Alice",
+    "lastName": "Johnson",
+    "dateBirth": "1988-08-01",
+    "startDate": "2020-01-15",
+    "isActive": true,
+    "salaryUSD": 72000,
+    "localCurrency": "USD"
+  },
+  {
+    "id": 2,
+    "email": "brandon.lee@example.com",
+    "firstName": "Brandon",
+    "lastName": "Lee",
+    "dateBirth": "1990-03-22",
+    "startDate": "2019-06-01",
+    "isActive": true,
+    "salaryUSD": 85000,
+    "localCurrency": "USD"
+  },
+  {
+    "id": 3,
+    "email": "carla.martinez@example.com",
+    "firstName": "Carla",
+    "lastName": "Martinez",
+    "dateBirth": "1985-11-10",
+    "startDate": "2018-09-30",
+    "isActive": false,
+    "salaryUSD": 64000,
+    "localCurrency": "USD"
+  },
+  {
+    "id": 4,
+    "email": "david.nguyen@example.com",
+    "firstName": "David",
+    "lastName": "Nguyen",
+    "dateBirth": "1992-07-05",
+    "startDate": "2021-03-12",
+    "isActive": true,
+    "salaryUSD": 91000,
+    "localCurrency": "USD"
+  },
+  {
+    "id": 5,
+    "email": "emily.smith@example.com",
+    "firstName": "Emily",
+    "lastName": "Smith",
+    "dateBirth": "1987-02-18",
+    "startDate": "2017-11-20",
+    "isActive": false,
+    "salaryUSD": 78000,
+    "localCurrency": "USD"
+  },
+  {
+    "id": 6,
+    "email": "frank.thomas@example.com",
+    "firstName": "Frank",
+    "lastName": "Thomas",
+    "dateBirth": "1995-09-09",
+    "startDate": "2022-05-01",
+    "isActive": true,
+    "salaryUSD": 60000,
+    "localCurrency": "USD"
+  },
+  {
+    "id": 7,
+    "email": "grace.wilson@example.com",
+    "firstName": "Grace",
+    "lastName": "Wilson",
+    "dateBirth": "1983-12-25",
+    "startDate": "2015-04-18",
+    "isActive": false,
+    "salaryUSD": 95000,
+    "localCurrency": "USD"
+  },
+  {
+    "id": 8,
+    "email": "henry.brown@example.com",
+    "firstName": "Henry",
+    "lastName": "Brown",
+    "dateBirth": "1991-01-30",
+    "startDate": "2020-08-10",
+    "isActive": true,
+    "salaryUSD": 87000,
+    "localCurrency": "USD"
+  },
+  {
+    "id": 9,
+    "email": "isabella.clark@example.com",
+    "firstName": "Isabella",
+    "lastName": "Clark",
+    "dateBirth": "1989-06-14",
+    "startDate": "2016-02-01",
+    "isActive": false,
+    "salaryUSD": 69000,
+    "localCurrency": "USD"
+  },
+  {
+    "id": 10,
+    "email": "james.taylor@example.com",
+    "firstName": "James",
+    "lastName": "Taylor",
+    "dateBirth": "1993-10-03",
+    "startDate": "2023-01-09",
+    "isActive": true,
+    "salaryUSD": 82000,
+    "localCurrency": "USD"
+  },
+  {
+    "id": 11,
+    "email": "sofia.garcia@example.com",
+    "firstName": "Sofia",
+    "lastName": "Garcia",
+    "dateBirth": "1994-04-12",
+    "startDate": "2021-07-19",
+    "isActive": true,
+    "salaryUSD": 68000,
+    "localCurrency": "EUR"
+  },
+  {
+    "id": 12,
+    "email": "liam.evans@example.com",
+    "firstName": "Liam",
+    "lastName": "Evans",
+    "dateBirth": "1986-09-23",
+    "startDate": "2014-03-05",
+    "isActive": false,
+    "salaryUSD": 102000,
+    "localCurrency": "GBP"
+  },
+  {
+    "id": 13,
+    "email": "mia.kim@example.com",
+    "firstName": "Mia",
+    "lastName": "Kim",
+    "dateBirth": "1997-11-02",
+    "startDate": "2022-09-14",
+    "isActive": true,
+    "salaryUSD": 56000,
+    "localCurrency": "KRW"
+  },
+  {
+    "id": 14,
+    "email": "noah.jones@example.com",
+    "firstName": "Noah",
+    "lastName": "Jones",
+    "dateBirth": "1982-05-17",
+    "startDate": "2010-12-01",
+    "isActive": false,
+    "salaryUSD": 120000,
+    "localCurrency": "USD"
+  },
+  {
+    "id": 15,
+    "email": "amelia.davis@example.com",
+    "firstName": "Amelia",
+    "lastName": "Davis",
+    "dateBirth": "1996-02-28",
+    "startDate": "2021-11-11",
+    "isActive": true,
+    "salaryUSD": 75000,
+    "localCurrency": "CAD"
+  },
+  {
+    "id": 16,
+    "email": "ethan.miller@example.com",
+    "firstName": "Ethan",
+    "lastName": "Miller",
+    "dateBirth": "1984-07-09",
+    "startDate": "2013-05-20",
+    "isActive": false,
+    "salaryUSD": 98000,
+    "localCurrency": "AUD"
+  },
+  {
+    "id": 17,
+    "email": "olivia.harris@example.com",
+    "firstName": "Olivia",
+    "lastName": "Harris",
+    "dateBirth": "1990-10-15",
+    "startDate": "2018-01-25",
+    "isActive": true,
+    "salaryUSD": 83000,
+    "localCurrency": "USD"
+  },
+  {
+    "id": 18,
+    "email": "daniel.white@example.com",
+    "firstName": "Daniel",
+    "lastName": "White",
+    "dateBirth": "1981-03-30",
+    "startDate": "2009-09-10",
+    "isActive": false,
+    "salaryUSD": 110000,
+    "localCurrency": "USD"
+  },
+  {
+    "id": 19,
+    "email": "ava.moore@example.com",
+    "firstName": "Ava",
+    "lastName": "Moore",
+    "dateBirth": "1998-12-21",
+    "startDate": "2023-04-01",
+    "isActive": true,
+    "salaryUSD": 62000,
+    "localCurrency": "INR"
+  },
+  {
+    "id": 20,
+    "email": "jackson.hall@example.com",
+    "firstName": "Jackson",
+    "lastName": "Hall",
+    "dateBirth": "1989-08-08",
+    "startDate": "2016-06-15",
+    "isActive": true,
+    "salaryUSD": 87000,
+    "localCurrency": "USD"
+  },
+  {
+    "id": 21,
+    "email": "chloe.adams@example.com",
+    "firstName": "Chloe",
+    "lastName": "Adams",
+    "dateBirth": "1992-02-11",
+    "startDate": "2020-05-20",
+    "isActive": true,
+    "salaryUSD": 70000,
+    "localCurrency": "EUR"
+  },
+  {
+    "id": 22,
+    "email": "mason.scott@example.com",
+    "firstName": "Mason",
+    "lastName": "Scott",
+    "dateBirth": "1987-09-04",
+    "startDate": "2015-07-01",
+    "isActive": false,
+    "salaryUSD": 95000,
+    "localCurrency": "GBP"
+  },
+  {
+    "id": 23,
+    "firstName": "John",
+    "lastName": "Smith",
+    "startDate": "2023-06-03T04:00:00.000Z",
+    "isActive": true,
+    "salaryUSD": "108000",
+    "localCurrency": "USD"
+  },
+  {
+    "id": 24,
+    "firstName": "Marc",
+    "lastName": "Jacobs",
+    "startDate": "1999-01-02T05:00:00.000Z",
+    "isActive": true,
+    "salaryUSD": "150000",
+    "localCurrency": "GBP"
+  }
+]
