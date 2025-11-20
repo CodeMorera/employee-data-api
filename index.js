@@ -1,89 +1,59 @@
 //Import sample data
-import { error } from "node:console";
-import fs from "node:fs/promises";
+// import { error } from "node:console";
+// import { loadData, writeData } from "./data.js";
+import { getAllEmployees, insertEmployee } from "./database.js";
+import { getCurrencyConversionData, getSalary } from "./currency.js";
 // Global variables ----------------------------------------
 
 let employees = [];
 let currencyData;
-
-// CurrencyData ---------------------------------------------
-const getCurrencyConversionData = async () => {
-  const headers = new Headers();
-  headers.append("apikey", "15480e98d8e772824d830821");
-  const options = {
-    method: "GET",
-    redirect: "follow",
-    headers,
-  };
-  const response = await fetch(
-    "https://v6.exchangerate-api.com/v6/15480e98d8e772824d830821/latest/USD?base=USD",
-    options
-  );
-  if (!response.ok) {
-    throw new Error("Cannot fetch-currency data.");
-  }
-  currencyData = await response.json();
-};
-
-const getSalary = (amountUSD, currency) => {
-  const amount =
-    (currency === "USD") ? amountUSD : amountUSD * currencyData.conversion_rates[currency];
-  const formatter = Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: currency,
-  });
-  return formatter.format(amount);
-};
-
-// Loading and writing data to the filesystem----------------
-
-const loadData = async () => {
-  console.log("Loading employees.....");
-  try {
-    const fileData = await fs.readFile("./data.json");
-    employees = JSON.parse(fileData);
-  } catch (err) {
-    console.error("Cannot load in employees");
-    throw err;
-  }
-};
-const writeData = async () => {
-  console.log("Writing employees.....");
-  try {
-    await fs.writeFile("./data.json", JSON.stringify(employees, null, 2));
-  } catch (err) {
-    console.error("Cannot write employees data");
-    throw err;
-  }
-};
 
 import createPrompt from "prompt-sync";
 let prompt = createPrompt();
 
 const logEmployee = (employee) => {
   Object.entries(employee).forEach((entry) => {
-    if (entry[0] !== "salaryUSD" || entry[0] !== "localCurrency")
-    {
+    if (entry[0] !== "salaryUSD" || entry[0] !== "localCurrency") {
       console.log(`${entry[0]}: ${entry[1]}`);
     }
   });
-  console.log(`Salary USD: ${getSalary(employee.salaryUSD, "USD")}`);
-  console.log(`Local Salary: ${getSalary(employee.salaryUSD, employee.localCurrency)}`);
+  console.log(
+    `Salary USD: ${getSalary(employee.salaryUSD, "USD", currencyData)}`
+  );
+  console.log(
+    `Local Salary: ${getSalary(
+      employee.salaryUSD,
+      employee.localCurrency,
+      currencyData
+    )}`
+  );
 };
 
 function getInput(promptText, validator, transformer) {
-  let value = prompt(promptText);
-  if (validator && !validator(value)) {
-    console.error("--Invalid Input--");
-    return getInput(promptText, validator, transformer);
-  }
-  if (transformer) {
-    return transformer(value);
-  }
+  let value;
+  do {
+    value = prompt(promptText);
+    value = transformer(value);
+    if (!validator(value)) {
+      console.log("❌ Invalid input, please try again.");
+    }
+  } while (!validator(value));
   return value;
+  // let value = prompt(promptText);
+  // if (validator && !validator(value)) {
+  //   console.error("--Invalid Input--");
+  //   return getInput(promptText, validator, transformer);
+  // }
+  // if (transformer) {
+  //   return transformer(value);
+  // }
+  // return value;
 }
 
 const getMaxEmployeeId = () => {
+  if (employees.length === 0) {
+    return 1;
+  }
   const maxID = Math.max(...employees.map((e) => e.id));
   return maxID + 1;
 };
@@ -91,7 +61,7 @@ const getMaxEmployeeId = () => {
 //Validator Functions -----------------------------------------
 const isCurrencyCodeValid = function (code) {
   const currencyCodes = Object.keys(currencyData.conversion_rates);
-  return (currencyCodes.indexOf(code) > -1);
+  return currencyCodes.indexOf(code) > -1;
 };
 
 const isStringInputValid = function (input) {
@@ -113,6 +83,11 @@ const isIntegerValid = (min, max) => {
   };
 };
 
+let isEmailValid = (input) => {
+  let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return regex.test(input.trim());
+};
+
 //Application commands: ---------------------------------------
 function listEmployees() {
   console.log(`Employee List -------------------------`);
@@ -131,6 +106,7 @@ async function addEmployee() {
   employee.id = getMaxEmployeeId();
   employee.firstName = getInput("First Name: ", isStringInputValid); //not passing the function, just passing it as a parameter
   employee.lastName = getInput("Last Name: ", isStringInputValid);
+  employee.email = getInput("Email: ", isEmailValid);
   let startDateYear = getInput(
     "Employee Start Year (1990-2025): ",
     isIntegerValid(1990, 2025)
@@ -162,13 +138,12 @@ async function addEmployee() {
     isCurrencyCodeValid
   );
 
-  employees.push(employee);
-  await writeData();
+  await insertEmployee(employee);
 }
 
 //Search for employees by id
 function searchId() {
-  const id = getInput("Employee ID: ", null, Number);
+  const id = getInput("Employee ID: ", isIntegerValid(1, 999), Number);
   const result = employees.find((e) => e.id === id);
   if (result) {
     console.log("");
@@ -226,8 +201,12 @@ const main = async () => {
   }
 };
 
-Promise.all([loadData(),getCurrencyConversionData()])
-  .then(main)
+Promise.all([getAllEmployees(), getCurrencyConversionData()])
+  .then((results) => {
+    employees = results[0];
+    currencyData = results[1];
+    return main();
+  })
   .catch((err) => {
     console.error("Cannot complete startup");
     throw err;
