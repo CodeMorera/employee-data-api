@@ -29,25 +29,15 @@ const logEmployee = (employee) => {
   );
 };
 
-function getInput(promptText, validator, transformer) {
+function getInput(promptText, validator, transformer = (v)=>v) {
   let value;
   do {
     value = prompt(promptText);
-    value = transformer(value);
     if (!validator(value)) {
-      console.log("❌ Invalid input, please try again.");
+      console.log("X: Invalid input, please try again.");
     }
   } while (!validator(value));
-  return value;
-  // let value = prompt(promptText);
-  // if (validator && !validator(value)) {
-  //   console.error("--Invalid Input--");
-  //   return getInput(promptText, validator, transformer);
-  // }
-  // if (transformer) {
-  //   return transformer(value);
-  // }
-  // return value;
+  return transformer(value);;
 }
 
 const getMaxEmployeeId = () => {
@@ -70,7 +60,7 @@ const isStringInputValid = function (input) {
 };
 
 const isBooleanInputValid = function (input) {
-  return input === "yes" || input === "no";
+  return input.toLowerCase() === "yes" || input.toLowerCase() === "no";
 };
 
 const isIntegerValid = (min, max) => {
